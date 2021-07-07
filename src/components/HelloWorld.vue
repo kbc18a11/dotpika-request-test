@@ -16,19 +16,17 @@ export default {
     msg: String
   },
   setup() {
-    const pixcelData = reactive(pixelArt());
+    const pixcelData = pixelArt();
 
     async function reqestPostApi() {
-
-
-      const url = 'http://localhost:5000/api/out-put-pixel-arts';
+      const url = 'http://localhost:5000/api/out-put-pixel-arts/usb';
 
       try {
-        const res = await axios.post(url);
+        const res = await axios.post(url, { dots: pixcelData });
 
         console.log(res);
       } catch (e) {
-        console.error(e);
+        console.error(e.response);
       }
     }
 
